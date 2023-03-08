@@ -1,0 +1,25 @@
+-- Table: public.tbl_contact_manager
+
+-- DROP TABLE IF EXISTS public.tbl_contact_manager;
+
+CREATE TABLE IF NOT EXISTS public.tbl_contact_manager
+(
+    "ID" integer NOT NULL DEFAULT nextval('my_sequence'::regclass),
+    "Salutation" name COLLATE pg_catalog."C" NOT NULL,
+    "FirstName" name COLLATE pg_catalog."C" NOT NULL,
+    "LastName" name COLLATE pg_catalog."C" NOT NULL,
+    "DisplayName" name COLLATE pg_catalog."C" NOT NULL,
+    "Email" name COLLATE pg_catalog."C" NOT NULL,
+    "Phonenumber" name COLLATE pg_catalog."C" NOT NULL,
+    "CreationTimestamp" timestamp without time zone DEFAULT now(),
+    "LastChangeTimestamp" timestamp without time zone,
+    "NotifyHasBirthdaySoon" name COLLATE pg_catalog."C",
+    "Birthdate" timestamp without time zone,
+    CONSTRAINT tbl_contact_manager_pkey PRIMARY KEY ("ID"),
+    CONSTRAINT "UniqueEmail" UNIQUE ("Email")
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.tbl_contact_manager
+    OWNER to postgres;
